@@ -23,19 +23,36 @@ class UsersController < ApplicationController
   end
   
   def update
-    if @user.update(user_params)
-      # 保存に成功した場合はトップページへリダイレクト
-      redirect_to user_path , notice: 'メッセージを編集しました'
+    #binding.pry
+    if params[:user][:new_password].blank? || params[:user][:new_password_confirmation].blank?
+      if @user.update(user_params)
+        # 保存に成功した場合はトップページへリダイレクト
+        redirect_to user_path(@user) , alert: 'メッセージを編集しました'
+      else
+        # 保存に失敗した場合は編集画面へ戻す
+        render 'edit', alert: "失敗１"
+      end 
+    elsif @user && @user.authenticate(params[:user][:password_for_edit])
+      params[:user][:password] = params[:user][:new_password]
+      params[:user][:password_confirmation] = params[:user][:new_password_confirmation]
+      if @user.update(user_params)
+        # 保存に成功した場合はトップページへリダイレクト
+        redirect_to user_path(@user) , alert: 'メッセージを編集しました'
+      else
+        # 保存に失敗した場合は編集画面へ戻す
+        render 'edit', alert: "失敗２"
+      end
     else
-      # 保存に失敗した場合は編集画面へ戻す
-      render 'edit'
+      render 'edit', alert: '現在のパスワードが間違っています。'
     end
+      
+
   end
   
   private
-  
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :residence, :detail)
+    
   end
   
   def set_user

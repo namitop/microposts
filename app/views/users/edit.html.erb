@@ -23,5 +23,18 @@
   
   詳細:
   <%= f.text_field :detail %>
+  
+
+  新しいパスワードを設定する場合＞現在のパスワードを入力：
+  <%= f.password_field :password_for_edit %>
+
+  新しいパスワードを設定：
+  <%= f.password_field :new_password %>
+  
+  新しいパスワードの確認：
+  <%= f.password_field :new_password_confirmation %>
+  
+
+  
   <%= f.submit class: "btn btn-sm btn-primary" %>
 <% end %>
