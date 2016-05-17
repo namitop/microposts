@@ -2,3 +2,12 @@
   <%= gravatar_for @user %>
   <%= @user.name %>
 </h1>
+<p>email:<%= @user.email %></p>
+<p>residence:<%= @user.residence %></p>
+<p>detail:<%= @user.detail %></p>
+
+<% current_user %>
+<% if @user == @current_user %>
+  <%= link_to "EDIT" , edit_user_path(@user), class: "btn btn-sm btn-info btn-block" %>
+<% end %>
+
