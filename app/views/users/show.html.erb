@@ -1,12 +1,18 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
-<p>email:<%= @user.email %></p>
-<p>residence:<%= @user.residence %></p>
-<p>detail:<%= @user.detail %></p>
-
-<% current_user %>
-<% if @user == @current_user %>
-  <%= link_to "PROFILE SETTING" , edit_user_path(@user), class: "btn btn-sm btn-info btn-block" %>
-<% end %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+    <% end %>
+  </div>
+</div>
