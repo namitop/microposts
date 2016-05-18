@@ -30,9 +30,10 @@ class UsersController < ApplicationController
         redirect_to user_path(@user) , alert: 'メッセージを編集しました'
       else
         # 保存に失敗した場合は編集画面へ戻す
-        render 'edit', alert: "失敗１"
+        flash.now[:alert] = "失敗１"
+        render 'edit'
       end 
-    elsif @user && @user.authenticate(params[:user][:password_for_edit])
+    elsif @user && @user.authenticate(params[:user][:password_for_edit]) && params[:user][:new_password]==params[:user][:new_password_confirmation]
       params[:user][:password] = params[:user][:new_password]
       params[:user][:password_confirmation] = params[:user][:new_password_confirmation]
       if @user.update(user_params)
@@ -40,10 +41,12 @@ class UsersController < ApplicationController
         redirect_to user_path(@user) , alert: 'メッセージを編集しました'
       else
         # 保存に失敗した場合は編集画面へ戻す
-        render 'edit', alert: "失敗２"
+        flash.now[:alert] = "失敗２"
+        render 'edit'
       end
     else
-      render 'edit', alert: '現在のパスワードが間違っています。'
+      flash.now[:alert] = '現在のパスワードor確認用パスワードが間違っています。'
+      render 'edit'
     end
       
 
