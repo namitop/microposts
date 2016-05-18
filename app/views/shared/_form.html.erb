@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      
+      <% if @page_title=="Sign up" || @page_title=="Setting" %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      <% end %>
+      
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+  
+      <% if @page_title=="Sign up" || @page_title=="Log in" %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      <% end %>
+  
+      <% if @page_title=="Sign up" %>
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+      <% end %>
+        
+      <% if @page_title=="Setting" %>
+        <%= f.label :residence %>
+        <%= f.text_field :residence %>
+        
+        <%= f.label :detail %>
+        <%= f.text_field :detail %>
+        
+        <%= f.label :password_for_edit, "OLD password" %>
+        <%= f.password_field :password_for_edit %>
+
+        <%= f.label :new_password, "NEW password" %>
+        <%= f.password_field :new_password %>
+  
+        <%= f.label :new_password_confirmation, "Confirmation(NEW password)" %>
+        <%= f.password_field :new_password_confirmation %>
+      <% end %>
+      
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

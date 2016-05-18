@@ -20,6 +20,9 @@ class UsersController < ApplicationController
   end
   
   def edit
+    if @user != @current_user
+      redirect_to root_path, alert: "別のユーザーの編集はできません。"
+    end
   end
   
   def update
