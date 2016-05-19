@@ -49,8 +49,16 @@ class UsersController < ApplicationController
       flash.now[:alert] = '現在のパスワードor確認用パスワードが間違っています。'
       render 'edit'
     end
-      
-
+  end
+  
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.following_relationships #.order(created_at: :desc)
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.follower_relationships.order(created_at: :desc)
   end
   
   private

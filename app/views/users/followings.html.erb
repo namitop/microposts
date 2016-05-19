@@ -8,26 +8,11 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-    <% end %>
     <h3>Following (<%= @user.following_relationships.count %>)</h3>
     <% if @user.following_relationships.any? %>
       <ol class="following_relationships">
         <% @user.following_relationships.order(created_at: :desc).each do |following_relationship| %>
           <%= render partial: 'relationships/following_relationship', locals: {following_relationship: following_relationship} %>
-        <% end %>
-      </ol>
-    <% end %>
-    <h3>Follower (<%= @user.follower_relationships.count %>)</h3>
-    <% if @user.follower_relationships.any? %>
-      <ol class="follower_relationships">
-        <% @user.follower_relationships.order(created_at: :desc).each do |follower_relationship| %>
-          <%= render partial: 'relationships/follower_relationship', locals: {follower_relationship: follower_relationship} %>
         <% end %>
       </ol>
     <% end %>

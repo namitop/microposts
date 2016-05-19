@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'static_pages#home'
   get 'signup', to: 'users#new'
-  get '/setting/:id', to: 'users#edit'
+  get 'setting/:id', to: 'users#edit'
+  get 'users/:id/followings', to: 'users#followings', as: "followings"
+  get 'users/:id/followers', to: 'users#followers', as: "followers"
   
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'

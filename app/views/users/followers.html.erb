@@ -1,0 +1,20 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3>Follower (<%= @user.follower_relationships.count %>)</h3>
+    <% if @user.follower_relationships.any? %>
+      <ol class="follower_relationships">
+        <% @user.follower_relationships.order(created_at: :desc).each do |follower_relationship| %>
+          <%= render partial: 'relationships/follower_relationship', locals: {follower_relationship: follower_relationship} %>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
+</div>
