@@ -179,7 +179,7 @@ aside {
 
 /* following_relationships */
 
-.following_relationships {
+.relationships {
   list-style: none;
   padding: 0;
   li {
@@ -201,32 +201,6 @@ aside {
     margin-top: 5px;
   }
 }
-
-/* follower_relationships */
-
-.follower_relationships {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
-  }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
-}
-
 
 
 aside {

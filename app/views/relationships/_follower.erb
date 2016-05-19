@@ -1,4 +1,4 @@
-<li id="follower_relationship-<%= follower_relationship.id %>">
+<li id="follower_relationship-<%= follower_relationship[:follower_id] %>">
   <%= link_to gravatar_for(follower_relationship.follower, size: 50), follower_relationship.follower %>
   <span class="user"><%= link_to follower_relationship.follower.name, follower_relationship.follower %></span>
   <span class="timestamp">

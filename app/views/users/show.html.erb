@@ -15,19 +15,19 @@
         <%= render @microposts %>
       </ol>
     <% end %>
-    <h3>Following (<%= @user.following_relationships.count %>)</h3>
-    <% if @user.following_relationships.any? %>
-      <ol class="following_relationships">
-        <% @user.following_relationships.order(created_at: :desc).each do |following_relationship| %>
-          <%= render partial: 'relationships/following_relationship', locals: {following_relationship: following_relationship} %>
+    <h3><%= link_to("Followings", followings_user_path) %> (<%= @followings.count %>)</h3>
+    <% if @followings.any? %>
+      <ol class="relationships">
+        <% @followings.each do |following| %>
+          <%= render partial: 'relationships/following', locals: {following_relationship: following} %>
         <% end %>
       </ol>
     <% end %>
-    <h3>Follower (<%= @user.follower_relationships.count %>)</h3>
-    <% if @user.follower_relationships.any? %>
-      <ol class="follower_relationships">
-        <% @user.follower_relationships.order(created_at: :desc).each do |follower_relationship| %>
-          <%= render partial: 'relationships/follower_relationship', locals: {follower_relationship: follower_relationship} %>
+    <h3><%= link_to("Followers", followers_user_path) %> (<%= @followers.count %>)</h3>
+    <% if @followers.any? %>
+      <ol class="relationships">
+        <% @followers.each do |follower| %>
+          <%= render partial: 'relationships/follower', locals: {follower_relationship: follower} %>
         <% end %>
       </ol>
     <% end %>
