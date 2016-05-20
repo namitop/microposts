@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.order(created_at: :desc)
-    @followings = @user.following_relationships.order(created_at: :desc)
-    @followers = @user.follower_relationships.order(created_at: :desc)
+    @microposts = @user.microposts.order(created_at: :desc).page(params[:page])
+    @followings = @user.following_relationships.order(created_at: :desc).page(params[:page])
+    @followers = @user.follower_relationships.order(created_at: :desc).page(params[:page])
   end
   
   def new
@@ -55,12 +55,12 @@ class UsersController < ApplicationController
   
   def followings
     @user = User.find(params[:id])
-    @followings = @user.following_relationships.order(created_at: :desc)
+    @followings = @user.following_relationships.order(created_at: :desc).page(params[:page])
   end
   
   def followers
     @user = User.find(params[:id])
-    @followers = @user.follower_relationships.order(created_at: :desc)
+    @followers = @user.follower_relationships.order(created_at: :desc).page(params[:page])
   end
   
   private

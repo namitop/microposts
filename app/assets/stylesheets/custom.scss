@@ -133,6 +133,19 @@ aside {
       margin-top: 0px;
     }
   }
+  span{
+    display: block;
+  }
+  .follow_form{
+  }
+  .residence{
+    color: #888;
+    word-wrap: break-word;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .detail{
+    word-wrap: break-word;
+  }
 }
 
 .gravatar {
@@ -189,6 +202,15 @@ aside {
   .user {
     margin-top: 5em;
     padding-top: 0;
+  }
+  .detail {
+    word-wrap: break-word;
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
   }
   .timestamp {
     color: $gray-light;

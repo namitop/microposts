@@ -1,6 +1,7 @@
 <li id="following_relationship-<%= following_relationship[:followed_id] %>">
   <%= link_to gravatar_for(following_relationship.followed, size: 50), following_relationship.followed %>
   <span class="user"><%= link_to following_relationship.followed.name, following_relationship.followed %></span>
+  <span class="detail"><%= following_relationship.followed.detail %></span>
   <span class="timestamp">
     be following : <%= time_ago_in_words(following_relationship.created_at) %> ago.
   </span>

@@ -6,10 +6,16 @@
         <%= @user.name %>
       </h1>
     </section>
+    <%= render 'follow_form' if logged_in? %>
+    
+    <h3><%= link_to("Microposts", user_path) %></h3>
+    <h3><%= link_to("Followings", followings_user_path) %></h3>
+    <h3><%= link_to("Followers", followers_user_path) %></h3>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <h3>Followings (<%= @followings.count %>)</h3>
+    
+    <h3><%= link_to("Followings", followings_user_path) %> (<%= @followings.count %>)</h3>
+    <% page_entries_info @followings %>
     <% if @followings.any? %>
       <ol class="relationships">
         <% @followings.each do |following| %>
@@ -17,5 +23,7 @@
         <% end %>
       </ol>
     <% end %>
+    <%= paginate @followings %>
+
   </div>
 </div>

@@ -6,30 +6,34 @@
         <%= @user.name %>
       </h1>
     </section>
+    
+    <span class="follow_form">
+      <%= render 'follow_form' if logged_in? %>
+    </span>
+    
+    <span class="residence">
+      @<%= @user.residence  %>
+    </span>
+    <span class="detail">
+      <%= @user.detail  %>
+    </span>
+    
+    <h3><%= link_to("Microposts", user_path) %></h3>
+    <h3><%= link_to("Followings", followings_user_path) %></h3>
+    <h3><%= link_to("Followers", followers_user_path) %></h3>
+    
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+    
+    <h3>Microposts (<%= @microposts.count %>)</h3>
+    
+    <% page_entries_info @microposts %>
+    <% if @microposts.any? %>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
     <% end %>
-    <h3><%= link_to("Followings", followings_user_path) %> (<%= @followings.count %>)</h3>
-    <% if @followings.any? %>
-      <ol class="relationships">
-        <% @followings.each do |following| %>
-          <%= render partial: 'relationships/following', locals: {following_relationship: following} %>
-        <% end %>
-      </ol>
-    <% end %>
-    <h3><%= link_to("Followers", followers_user_path) %> (<%= @followers.count %>)</h3>
-    <% if @followers.any? %>
-      <ol class="relationships">
-        <% @followers.each do |follower| %>
-          <%= render partial: 'relationships/follower', locals: {follower_relationship: follower} %>
-        <% end %>
-      </ol>
-    <% end %>
+    <%= paginate @microposts %>
+    
   </div>
 </div>
